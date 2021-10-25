@@ -11,8 +11,11 @@ namespace TroubleInParadise.Models
         public DateTime Created {  get; set; }
         public DateTime ReleaseDate {  get; set; }
         public DateTime CloseDate {  get; set; }
+#nullable enable
         [ForeignKey("ServerId")]
         public virtual ICollection<Player>? Players {  get; set; }
+        [ForeignKey("ServerId")]
+        public virtual ICollection<Server_Plots>? server_Plots { get; set; }
 
     }
     [NotMapped]
