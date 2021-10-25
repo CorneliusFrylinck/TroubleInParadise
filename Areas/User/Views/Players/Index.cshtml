@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TroubleInParadise.Models.Player>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-area="User" asp-controller="Servers" asp-action="Index" asp-route-id="@User.Identity.Name" class="btn btn-outline-info"><i class="fas fa-plus mr-2"></i>Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+        @if (Model.Count() > 0)
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Last_Seen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Last_Updated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th></th>
+            }else
+            {
+                <th>
+                    Player Details
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Seen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Updated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Play</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td>No Players found for this user, click the "Create New" button above or click <a asp-area="User" asp-controller="Servers" asp-action="Index" asp-route-id="@User.Identity.Name" class="link-info">here</a> to start your journey.</td>
+            </tr>
+        }
+    </tbody>
+</table>

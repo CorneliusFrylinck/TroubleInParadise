@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TroubleInParadise.Models.PlayerServer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Choose a Server</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CloseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CloseDate)
+            </td>
+            <td>
+                    @if (item.HasPlayer == true)
+                    {
+                        <a asp-area="User" asp-controller="Players" asp-action="Create" asp-route-id="@item.Id" asp-route-user="@User.Identity.Name">Continue</a>
+                    }else
+                    {
+                        <a asp-area="User" asp-controller="Players" asp-action="Create" asp-route-id="@item.Id" asp-route-user="@User.Identity.Name">Create Player</a>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

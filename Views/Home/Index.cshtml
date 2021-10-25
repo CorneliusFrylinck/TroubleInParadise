@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TroubleInParadise.Data
+@using TroubleInParadise.Models
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center"> 
+<h1>Welcome to Trouble in Paradise</h1>
+</div>
